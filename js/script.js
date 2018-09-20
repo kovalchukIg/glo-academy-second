@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", function () {
             'minutes': minutes,
             'seconds': seconds
         };
-    };
+    }
 
     function setClock(id, endTime) {
         let timer = document.getElementById(id),
@@ -63,6 +63,9 @@ window.addEventListener("DOMContentLoaded", function () {
             minutes.innerHTML = t.minutes;
 
             if (t.total <= 0){
+                hours.innerHTML = "00";
+                seconds.innerHTML = "00";
+                minutes.innerHTML = "00";
                 clearInterval(timeInterval);
             }
         }
@@ -73,6 +76,21 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
     setClock('timer', deadline);
+
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        popupClose = document.querySelector('.popup-close');
+
+    more.addEventListener('click', function () {
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    });
+
+    popupClose.addEventListener('click', function () {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+    })
 
 
 
